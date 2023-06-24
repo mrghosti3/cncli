@@ -12,15 +12,9 @@ fn main() {
 
         match ent.specific {
             EntityType::Line(ref line) => {
-                let (x1, y1) = {
-                    let p = &line.p1;
-                    (p.x, p.y)
-                };
-                let (x2, y2) = {
-                    let p = &line.p2;
-                    (p.x, p.y)
-                };
-                println!("Line {{ ({x1:}, {y1}) , ({x2}, {y2}) }}")
+                let (x1, y1, _) = line.p1.tuple();
+                let (x2, y2, _) = line.p2.tuple();
+                println!("Line {{ ({x1}, {y1}) , ({x2}, {y2}) }}")
             }
             _ => todo!("Not yet implemented handle")
         }
