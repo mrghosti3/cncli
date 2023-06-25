@@ -1,11 +1,15 @@
-use std::env;
+use std::{env, fs};
+use std::io::BufReader;
 
 use dxf::entities::EntityType;
 use dxf::Drawing;
 
 fn main() {
-    let file_name = env::args().last().expect("File not specified");
-    let dwg = Drawing::load_file(file_name).expect("Invalid file");
+    let dwg = {
+        let file_name = env::args().last().expect("File not specified");
+        let mut file = BufReader::new(fs::File::open(file_name).expect("Invalid file"));
+        Drawing::load(&mut file).expect("Invalid dxf format")
+    };
 
     for ent in dwg.entities() {
         println!("found ent on layer: {}", ent.common.layer);
