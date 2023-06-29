@@ -1,13 +1,17 @@
-use std::{env, fs};
+use std::fs;
 use std::io::BufReader;
 
+use clap::Parser;
 use dxf::entities::EntityType;
 use dxf::Drawing;
 
+mod setup;
+
 fn main() {
+    let args = setup::Args::parse();
+    dbg!(&args);
     let dwg = {
-        let file_name = env::args().last().expect("File not specified");
-        let mut file = BufReader::new(fs::File::open(file_name).expect("Invalid file"));
+        let mut file = BufReader::new(fs::File::open(args.dxf).expect("Invalid file"));
         Drawing::load(&mut file).expect("Invalid dxf format")
     };
 
