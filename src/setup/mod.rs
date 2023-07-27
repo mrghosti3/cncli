@@ -1,8 +1,6 @@
-use std::{
-    fs,
-    io::{self, Read},
-    string,
-};
+pub mod conf;
+
+use std::{fs, io, string};
 
 use clap::Parser;
 
@@ -19,7 +17,7 @@ pub struct Args {
     // Input cnc config file path
     #[arg(short = 'c', long = "config")]
     #[arg(default_value = "-")]
-    in_cnf: String,
+    config: String,
     // Input dxf file path
     pub dxf: String,
 }
@@ -75,9 +73,4 @@ impl io::Read for ConfigInput {
             Self::File(file) => file.read(buf),
         }
     }
-}
-
-#[derive(Debug)]
-pub struct Config {
-    // TODO: clarify data you need to store.
 }
