@@ -1,0 +1,48 @@
+{
+  "*gen_linuxcnc_laser": {
+    "machineLabel": "KMS Laser Cutter 40w",
+    "machineDescription": "KMS Laser Cutter 40w",
+    "settings": {
+      "machineWidth": 1550,
+      "machineHeight": 550,
+      "machineBeamDiameter": 0.2,
+      "toolSafetyLockDisabled": false,
+      "toolCncMode": false,
+      "toolImagePosition": "BL",
+      "toolUseNumpad": false,
+      "toolUseVideo": false,
+      "toolWebcamUrl": "",
+      "gcodeStart": "%\r\nG21         ; Set units to mm\r\nG90         ; Absolute positioning\r\nM4 S1000       ; Enable Laser/Spindle (0 power)\r\nM68 E0 Q80\r\nG64P0.1Q0.02\r\n",
+      "gcodeEnd": "M5          ; Disable Laser/Spindle\r\n%",
+      "gcodeHoming": "$H",
+      "gcodeToolOn": "",
+      "gcodeToolOff": "",
+      "gcodeSMaxValue": 1000,
+      "toolGridWidth": 1550,
+      "toolGridHeight": 550
+    }
+  },
+  "*gen_linuxcnc_shapeoko": {
+    "machineLabel": "KMS Shapeoko CNC mill",
+    "machineDescription": "KMS Shapeoko CNC mill",
+    "settings": {
+      "machineWidth": 120,
+      "machineHeight": 180,
+      "machineBeamDiameter": 0.2,
+      "toolSafetyLockDisabled": false,
+      "toolCncMode": true,
+      "toolImagePosition": "BL",
+      "toolUseNumpad": false,
+      "toolUseVideo": false,
+      "toolWebcamUrl": "",
+      "gcodeStart": "%G21         ; Set units to mm\r\nG90         ; Absolute positioning\r\nG64P0.1Q0.02\r\n",
+      "gcodeEnd": "M2          ; End\r\n%",
+      "gcodeHoming": "",
+      "gcodeToolOn": "",
+      "gcodeToolOff": "",
+      "gcodeSMaxValue": 1,
+      "toolGridWidth": 200,
+      "toolGridHeight": 200
+    }
+  }
+}
