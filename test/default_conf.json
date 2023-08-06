@@ -1,69 +1,67 @@
 {
-    id: '',
-    name: '',
-    enabled: true,
-    documents: [],
-    tabDocuments: [],
-    expanded: false,
-    type: 'Mill Cut',
-    filterFillColor: null,
-    filterStrokeColor: null,
-    direction: 'Conventional',
-    laserPower: 100,
-    laserPowerRange: { min: 0, max: 100 },
-    laserDiameter: 0,
-    toolDiameter: 0,
-    lineDistance: 0,
-    lineAngle: 0,
-    margin: 0,
-    passes: 1,
-    cutWidth: 0,
-    toolSpeed: 10000,
-    stepOver: 40,
-    passDepth: 1,
-    startHeight: '',
-    millRapidZ: 0,
-    millStartZ: 0,
-    millEndZ: -1,
-    segmentLength: 0.1,
-    tabDepth: 0,
-    plungeRate: 1000,
-    cutRate: 500,
-    overScan: 0,
-    toolAngle: 0,
-    ramp: false,
-    useA: false,
-    aAxisDiameter: 0,
-    useBlower: false,
-    smoothing: false,       // lw.raster-to-gcode: Smoothing the input image ?
-    brightness: 0,          // lw.raster-to-gcode: Image brightness [-255 to +255]
-    contrast: 0,            // lw.raster-to-gcode: Image contrast [-255 to +255]
-    gamma: 0,               // lw.raster-to-gcode: Image gamma correction [0.01 to 7.99]
-    grayscale: 'none',      // lw.raster-to-gcode: Graysale algorithm [none, average, luma, luma-601, luma-709, luma-240, desaturation, decomposition-[min|max], [red|green|blue]-chanel]
-    shadesOfGray: 256,      // lw.raster-to-gcode: Number of shades of gray [2-256]
-    invertColor: false,     // lw.raster-to-gcode
-    trimLine: true,         // lw.raster-to-gcode: Trim trailing white pixels
-    joinPixel: true,        // lw.raster-to-gcode: Join consecutive pixels with same intensity
-    burnWhite: true,        // lw.raster-to-gcode: [true = G1 S0 | false = G0] on inner white pixels
-    verboseGcode: false,    // lw.raster-to-gcode: Output verbose GCode (print each commands)
-    diagonal: false,        // lw.raster-to-gcode: Go diagonally (increase the distance between points)
-    dithering: false,       // lw.raster-to-gcode: Floyd Steinberg dithering
-    latheToolBackSide: false,
-    latheRapidToDiameter: 0,
-    latheRapidToZ: 0,
-    latheStartZ: 0,
-    latheRoughingFeed: 0,
-    latheRoughingDepth: 0,
-    latheFinishFeed: 0,
-    latheFinishDepth: 0,
-    latheFinishExtraPasses: 0,
-    latheFace: true,
-    latheFaceEndDiameter: 0,
-    latheTurns: [],
-    _docs_visible: true,
+    "id": '',
+    "name": '',
+    "enabled": true,
+    "documents": [], "tabDocuments": [],
+    "expanded": false,
+    "type": 'Mill Cut',
+    "filterFillColor": null,
+    "filterStrokeColor": null,
+    "direction": 'Conventional',
+    "laserPower": 100,
+    "laserPowerRange": { min: 0, max: 100 },
+    "laserDiameter": 0,
+    "toolDiameter": 0,
+    "lineDistance": 0,
+    "lineAngle": 0,
+    "margin": 0,
+    "passes": 1,
+    "cutWidth": 0,
+    "toolSpeed": 10000,
+    "stepOver": 40,
+    "passDepth": 1,
+    "startHeight": '',
+    "millRapidZ": 0,
+    "millStartZ": 0,
+    "millEndZ": -1,
+    "segmentLength": 0.1,
+    "tabDepth": 0,
+    "plungeRate": 1000,
+    "cutRate": 500,
+    "overScan": 0,
+    "toolAngle": 0,
+    "ramp": false,
+    "useA": false,
+    "aAxisDiameter": 0,
+    "useBlower": false,
+    "smoothing": false,       // lw.raster-to-gcode: Smoothing the input image ?
+    "brightness": 0,          // lw.raster-to-gcode: Image brightness [-255 to +255]
+    "contrast": 0,            // lw.raster-to-gcode: Image contrast [-255 to +255]
+    "gamma": 0,               // lw.raster-to-gcode: Image gamma correction [0.01 to 7.99]
+    "grayscale": 'none',      // lw.raster-to-gcode: Graysale algorithm [none, average, luma, luma-601, luma-709, luma-240, desaturation, decomposition-[min|max], [red|green|blue]-chanel]
+    "shadesOfGray": 256,      // lw.raster-to-gcode: Number of shades of gray [2-256]
+    "invertColor": false,     // lw.raster-to-gcode
+    "trimLine": true,         // lw.raster-to-gcode: Trim trailing white pixels
+    "joinPixel": true,        // lw.raster-to-gcode: Join consecutive pixels with same intensity
+    "burnWhite": true,        // lw.raster-to-gcode: [true = G1 S0 | false = G0] on inner white pixels
+    "verboseGcode": false,    // lw.raster-to-gcode: Output verbose GCode (print each commands)
+    "diagonal": false,        // lw.raster-to-gcode: Go diagonally (increase the distance between points)
+    "dithering": false,       // lw.raster-to-gcode: Floyd Steinberg dithering
+    "latheToolBackSide": false,
+    "latheRapidToDiameter": 0,
+    "latheRapidToZ": 0,
+    "latheStartZ": 0,
+    "latheRoughingFeed": 0,
+    "latheRoughingDepth": 0,
+    "latheFinishFeed": 0,
+    "latheFinishDepth": 0,
+    "latheFinishExtraPasses": 0,
+    "latheFace": true,
+    "latheFaceEndDiameter": 0,
+    "latheTurns": [],
     // Hooks!
-    hookOperationStart: '',
-    hookOperationEnd: '',
-    hookPassStart: '',
-    hookPassEnd: ''
+    "hookOperationStart": '',
+    "hookOperationEnd": '',
+    "hookPassStart": '',
+    "hookPassEnd": ''
 }
