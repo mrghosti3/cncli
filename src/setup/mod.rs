@@ -39,6 +39,11 @@ impl Args {
             path => Ok(io::BufWriter::new(IoWrap::File(fs::File::create(path)?))),
         }
     }
+
+    /// Retrieves config
+    pub fn get_config(&self) -> conf::Config {
+        conf::Config::default()
+    }
 }
 
 pub mod conf;

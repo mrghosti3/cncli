@@ -8,8 +8,14 @@ edition = "2021"
 [dependencies]
 dxf = "0.5.0"
 clap = { version = "4.3.9", features = ["derive"] }
+gcode = { version = "0.1", package = "gen_gcode" }
 
 [patch.crates-io.dxf]
 # TODO: remove when https://github.com/ixmilia/dxf-rs/pull/47 ir merged
 git = "https://github.com/mrghosti3/dxf-rs.git"
 branch = "point-to-tuple"
+
+[patch.crates-io.gen_gcode]
+# Temporary patch as a fork is being worked and improved upon.
+git = "https://github.com/mrghosti3/gen_gcode.git"
+branch = "main"
