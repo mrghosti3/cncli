@@ -6,18 +6,18 @@ M4 S1000
 M68 E0 Q80
 
 ;
-; Operation:    0
+; Opeation:    0
 ; Type:         Mill Cut
 ; Paths:        3
-; Direction:    Conventional
+; Diection:    Conventional
 ; Rapid Z:      0
-; Start Z:      0
+; Stat Z:      0
 ; End Z:        -1
 ; Pass Depth:   1
-; Plunge rate:  1000 mm/min
-; Cut rate:     500 mm/min
+; Plunge ate:  1000 mm/min
+; Cut ate:     500 mm/min
 ;
-; Retract
+; Retact
 G0 Z0.000
 
 ; Path 0
@@ -28,7 +28,7 @@ G0 Z0.000
 G1 Z-1.000 F1000 S10000
 ; cut
 G1 X121.000 Y55.750 F500 S10000
-; Retract
+; Retact
 G0 Z0.000
 
 ; Path 1
@@ -39,7 +39,7 @@ G0 Z0.000
 G1 Z-1.000 F1000 S10000
 ; cut
 G1 X142.000 Y16.250 F500 S10000
-; Retract
+; Retact
 G0 Z0.000
 
 ; Path 2
@@ -50,7 +50,7 @@ G0 Z0.000
 G1 Z-1.000 F1000 S10000
 ; cut
 G1 X36.500 Y27.250 F500 S10000
-; Retract
+; Retact
 G0 Z0.000
 M5          ; Switch tool offEnd
 %
