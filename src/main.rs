@@ -1,10 +1,11 @@
 use std::io::{BufReader, Write};
-use std::{fs, io};
+use std::fs;
 
 use clap::Parser;
 use dxf::entities::EntityType;
 use dxf::Drawing;
 
+mod gen;
 mod setup;
 mod util;
 
@@ -19,7 +20,7 @@ fn main() {
         Drawing::load(&mut file).expect("Invalid dxf format")
     };
 
-    setup_gcode(&config, &mut output).expect("Could not write to output");
+    gen::setup_gcode(&config, &mut output).expect("Could not write to output");
 
     for ent in dwg.entities() {
         writeln!(&mut output, "found ent on layer: {}", ent.common.layer).unwrap();
@@ -33,34 +34,4 @@ fn main() {
             _ => todo!("Not yet implemented handle"),
         }
     }
-}
-
-use setup::conf;
-
-/// Writes preperation instructions into the gcode output.
-fn setup_gcode(
-    config: &conf::Config,
-    output: &mut io::BufWriter<impl io::Write>,
-) -> io::Result<()> {
-    use gcode::consts::Constants;
-
-    writeln!(
-        output,
-        "{}         ; Set units to mm",
-        Constants::UseMillimeters.as_str()
-    )?;
-    writeln!(
-        output,
-        "{}         ; Absolute positioning",
-        Constants::AbsolutePos.as_str()
-    )?;
-
-    // TODO: check/add to gen_code crate:
-    output.write_all(b"G64P0.1Q0.02\n")?;
-    // TODO: add to gen_code crate:
-    output.write_all(b"M4 S1000\n")?;
-    // TODO: add to gen_code crate:
-    output.write_all(b"M68 E0 Q80\n")?;
-
-    Ok(())
 }

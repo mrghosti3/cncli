@@ -1,7 +1,7 @@
 %
 G21         ; Set units to mm
 G90         ; Absolute positioning
-G64P0.1Q0.02
+G64 P0.1 Q0.02
 M4 S1000
 M68 E0 Q80
 
