@@ -1,9 +1,10 @@
-use std::io::{BufReader, Write};
 use std::fs;
+use std::io::{BufReader, Write};
 
 use clap::Parser;
 use dxf::entities::EntityType;
 use dxf::Drawing;
+use libgcode::gen_fn as gc;
 
 mod gen;
 mod setup;
@@ -23,13 +24,23 @@ fn main() {
     gen::setup_gcode(&config, &mut output).expect("Could not write to output");
 
     for ent in dwg.entities() {
-        writeln!(&mut output, "found ent on layer: {}", ent.common.layer).unwrap();
+        eprintln!("found ent on layer: {}", ent.common.layer);
 
         match ent.specific {
             EntityType::Line(ref line) => {
                 let (x1, y1, _) = line.p1.tuple();
                 let (x2, y2, _) = line.p2.tuple();
-                writeln!(&mut output, "Line {{ ({x1}, {y1}) , ({x2}, {y2}) }}").unwrap();
+                eprintln!("Line {{ ({x1}, {y1}) , ({x2}, {y2}) }}");
+
+                writeln!(
+                    &mut output,
+                    "; Path 0\n; Rapid to initial position\n{}",
+                    gc::move_xy(x1, y1)
+                )
+                .unwrap();
+
+                // Make sure it is retracted.
+                writeln!(&mut output, "{}", gc::move_z(0.0)).unwrap();
             }
             _ => todo!("Not yet implemented handle"),
         }

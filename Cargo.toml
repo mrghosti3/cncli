@@ -9,6 +9,7 @@ edition = "2021"
 dxf = "0.5.0"
 clap = { version = "4.3.9", features = ["derive"] }
 gcode = { version = "0.1", package = "gen_gcode" }
+libgcode = { package = "gcode", path = "./lib/gcode" }
 
 [patch.crates-io.dxf]
 # TODO: remove when https://github.com/ixmilia/dxf-rs/pull/47 ir merged

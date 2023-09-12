@@ -6,7 +6,7 @@ pub fn setup_gcode(
     config: &conf::Config,
     output: &mut io::BufWriter<impl io::Write>,
 ) -> io::Result<()> {
-    use gcode::{consts::Constants, move_z};
+    use libgcode::gen_fn::{self as gc, g_const::GCodeConstants as Constants};
 
     writeln!(output, "%")?;
 
@@ -21,9 +21,7 @@ pub fn setup_gcode(
         Constants::AbsolutePos.as_str()
     )?;
 
-    // TODO: check/add to gen_code crate:
-    output.write_all(b"G64 P0.1 Q0.02\n")?;
-
+    writeln!(output, "{}", gc::set_path_control(0.1, 0.02))?;
 
     // TODO: add to gen_code crate:
     writeln!(output, "M4 S{}", config.plunge_rate)?;
@@ -45,14 +43,12 @@ pub fn setup_gcode(
 ; Pass Depth:   1
 ; Plunge rate:  {} mm/min
 ; Cut rate:     {} mm/min
-;
-",
-        config.plunge_rate,
-        config.cut_rate
+;",
+        config.plunge_rate, config.cut_rate
     )
     .unwrap();
 
-    writeln!(output, "; Retract\n{}", move_z(0f32))?;
+    writeln!(output, "; Retract\n{}", gc::move_z(0.0))?;
 
     Ok(())
 }

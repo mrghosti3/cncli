@@ -1,0 +1,3 @@
+[submodule "lib/gcode"]
+	path = lib/gcode
+	url = git@gitlab.com:mrghosti3/libgcode.git
