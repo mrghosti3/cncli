@@ -185,7 +185,6 @@ dependencies = [
  "clap",
  "dxf",
  "gcode",
- "gen_gcode",
 ]
 
 [[package]]
@@ -367,11 +366,6 @@ checksum = "f43be4fe21a13b9781a69afa4985b0f6ee0e1afab2c6f454a8cf30e2b2237b6e"
 [[package]]
 name = "gcode"
 version = "0.1.0"
-
-[[package]]
-name = "gen_gcode"
-version = "0.1.0"
-source = "git+https://github.com/mrghosti3/gen_gcode.git?branch=main#d14996bb1b5372c5f63b027e07578cf74c9bf0dd"
 
 [[package]]
 name = "getrandom"
