@@ -5,6 +5,7 @@ use clap::Parser;
 use dxf::entities::EntityType;
 use dxf::Drawing;
 use libgcode::gen_fn as gc;
+use libgcode::misc_fn as mc;
 
 mod gen;
 mod setup;
@@ -12,7 +13,6 @@ mod util;
 
 fn main() {
     let args = setup::Args::parse();
-    dbg!(&args);
     let config = args.get_config();
     let mut output = args.open_output().expect("Could not open output");
 
@@ -34,15 +34,38 @@ fn main() {
 
                 writeln!(
                     &mut output,
-                    "; Path 0\n; Rapid to initial position\n{}",
+                    "\n; Path 0\n; Rapid to initial position\n{}",
                     gc::move_xy(x1, y1)
                 )
                 .unwrap();
 
                 // Make sure it is retracted.
                 writeln!(&mut output, "{}", gc::move_z(0.0)).unwrap();
+
+                writeln!(
+                    &mut output,
+                    "; plunge\n{}",
+                    gc::move_z_feed(-1.0, 1000.0, Some(10000))
+                )
+                .unwrap();
+
+                writeln!(
+                    &mut output,
+                    "; cut\n{}",
+                    gc::move_xy_feed(&(x2, y2), 500.0, Some(10000))
+                )
+                .unwrap();
+
+                // Make sure it is retracted.
+                writeln!(&mut output, "; Retract\n{}", gc::move_z(0.0)).unwrap();
             }
             _ => todo!("Not yet implemented handle"),
         }
     }
+
+    writeln!(
+        &mut output,
+        "{}          ; Switch tool offEnd\n%",
+        mc::stop_select_spindle(mc::Spindle::Default)
+    ).unwrap();
 }
