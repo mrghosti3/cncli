@@ -7,6 +7,9 @@ run_line_diff:
 	${RUST_CMD} ./data/line.dxf | diff - ./data/line.gcode
 
 run_triangle:
+	${RUST_CMD} ./data/triangle.dxf
+
+run_triangle_diff:
 	${RUST_CMD} ./data/triangle.dxf | diff - ./data/triangle.gcode
 
 test_line:
