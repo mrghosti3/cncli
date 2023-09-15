@@ -4,8 +4,7 @@ use std::io::{BufReader, Write};
 use clap::Parser;
 use dxf::entities::EntityType;
 use dxf::Drawing;
-use libgcode::gen_fn as gc;
-use libgcode::misc_fn as mc;
+use libgcode::{g_codes as gc, m_codes as mc, utils as uc};
 
 mod gen;
 mod setup;
@@ -44,15 +43,17 @@ fn main() {
 
                 writeln!(
                     &mut output,
-                    "; plunge\n{}",
-                    gc::move_z_feed(-1.0, 1000.0, Some(10000))
+                    "; plunge\n{} {}",
+                    gc::move_z_feed(-1.0, 1000.0.into()),
+                    uc::SpindleSpeed::new(10000, uc::SpindleSelect::Default)
                 )
                 .unwrap();
 
                 writeln!(
                     &mut output,
-                    "; cut\n{}",
-                    gc::move_xy_feed(&(x2, y2), 500.0, Some(10000))
+                    "; cut\n{} {}",
+                    gc::move_xy_feed(&(x2, y2), 500.0.into()),
+                    uc::SpindleSpeed::new(10000, uc::SpindleSelect::Default)
                 )
                 .unwrap();
 
@@ -66,6 +67,7 @@ fn main() {
     writeln!(
         &mut output,
         "{}          ; Switch tool offEnd\n%",
-        mc::stop_select_spindle(mc::Spindle::Default)
-    ).unwrap();
+        mc::stop_select_spindle(uc::SpindleSelect::Default)
+    )
+    .unwrap();
 }

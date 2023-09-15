@@ -6,7 +6,7 @@ pub fn setup_gcode(
     config: &conf::Config,
     output: &mut io::BufWriter<impl io::Write>,
 ) -> io::Result<()> {
-    use libgcode::gen_fn::{self as gc, g_const::GCodeConstants as Constants};
+    use libgcode::g_codes::{self as gc, GCodeConstants as Constants};
 
     writeln!(output, "%")?;
 
